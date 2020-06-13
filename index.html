@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="billedkunst" content="billedkunst">
+    <meta name="croquis" content="croquis">
+    <meta name="danske kunstmalere" content="danske kunstmalere">
+    <meta name="croqui model" content="croqui model">
+    <meta name="kunstbøger" content="kunstbøger">
+    <meta name="kunstværker" content="kunstværker">
+    <meta name="kunstbiblioteket" content="kunstbiblioteket">
+
+
+    <link rel="stylesheet" href="https://use.typekit.net/dtw1azo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+
+    <title>Forside</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <header class="desktop">
+
+        <div id="logo" onclick="window.location.href='index.html'">
+            <img src="img/logo.png" alt="logo">
+        </div>
+
+
+        <nav>
+
+            <ul style="list-style-type:none" id="menu" class="hidden">
+                <a href="index.html"></a>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
+                <li><a href="om.html">Om</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <header class="mobile">
+
+        <div id="logo" onclick="window.location.href='index.html'">
+            <img src="img/logo.png" alt="logo">
+        </div>
+
+        <nav>
+            <div id="burger_menu">☰</div>
+            <div class="menu_wrapper">
+                <div class="mylinks">
+                    <ul style="list-style-type: none">
+                        <li><a href="index.html">Forside</a></li>
+                        <li> <a href="produkter.html">Værker</a> </li>
+                        <li><a href="books.html">Bøger</a></li>
+                        <li><a href="om.html">Om</a></li>
+                        <li> <a href="kontakt.html">Kontakt</a></li>
+
+
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="splash"><img src="img/Splash-100.jpg" alt="Billedkunst, danske kunstmalere, croqui model, surrealisme">
+        <div class="splash_tekst">
+            <p class="fremhaev">Kræsten Byskov</p>
+            <p>Kunstneren bag Byskov Gallery har en bred vifte af kompetencer og udtrykker sig med stor forskellighed igennem både tekst, maleri og illustrationer.
+                Kunsten blev hurtigt en del af Kræstens liv, da hans far Ole Byskov var kunstner og ikke var bleg for at lade Kræsten være med i atelieret. Hans karriere som kunstner starter dog først i 1978 da han får udgivet sin første illustration i Gyldendals litteratur blad Fælleden. Herfra former livet som kunstner sig for kræsten, med job på tegnestuen Gimle og flere illustrations udgivelser på bl.a. Ekstrabladet og i egne tegneserier, der nu er blevet til en stilling på grundtvigs højskole som underviser i tegning, maleri og kunsthistorie.
+            </p>
+        </div>
+
+
+
+    </div>
+
+    <div class="wrapper_index">
+
+        <a href="#liste_forside">
+            <div class="pil">
+                <img src="img/pil.png" alt="pil der går ned">
+
+            </div>
+        </a>
+
+        <h1 class="header_constant">Nyheder</h1>
+        <div class="wrapper_forside">
+
+            <main id="liste_forside"></main>
+
+            <template>
+
+                <article class="book_img">
+                    <img class="billede" src="">
+                </article>
+                <article class="forside">
+
+                    <h1 class="overskrift"></h1>
+                    <p class="tekst"></p>
+
+
+                </article>
+            </template>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <div class="left">
+                <h2>Kontakt</h2>
+                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642" target="_blank">Falkenhøjvej 7 <br> 3460 Birkerød</a>
+                <p>+45 20 82 24 58</p>
+
+                <a href="mailto: byskov@grundtvigs.dk">byskov@grundtvigs.dk</a>
+            </div>
+
+            <div class="right">
+                <h3>Find mig også på Kunstbiblioteket</h3><a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Kunstbiblioteket Nikolajgade 22</a>
+
+                <div class="some">
+                    <div class="face"> <a href="https://www.facebook.com/By-Byskov-296229904195893/" target="_blank"><img src="img/face.png" alt=""></a></div>
+                    <div class="insta"><a href="https://www.instagram.com/by_byskov/?hl=da" target="_blank"><img src="img/insta.png" alt=""></a></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="menu.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        let pages
+
+
+
+
+        let url = "http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/forside";
+
+
+
+
+
+        async function start() {
+            let response = await fetch(url);
+            pages = await response.json();
+            visPages();
+
+
+
+
+        }
+
+        // Samme som før
+        function visPages() {
+            console.log("JSON forberedes" + pages)
+
+
+            let liste = document.querySelector("#liste_forside");
+            let template = document.querySelector("template");
+
+            pages.forEach(page => {
+                const klon = template.cloneNode(true).content;
+
+                klon.querySelector(".overskrift").textContent = page.title.rendered;
+                klon.querySelector(".tekst").textContent = page.tekst;
+
+                klon.querySelector(".billede").src = page.billede.guid;
+
+
+                liste.appendChild(klon);
+            });
+
+
+        }
+    </script>
+</body></html>

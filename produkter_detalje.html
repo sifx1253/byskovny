@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="billedkunst" content="billedkunst">
+    <meta name="croquis" content="croquis">
+    <meta name="danske kunstmalere" content="danske kunstmalere">
+    <meta name="croqui model" content="croqui model">
+    <meta name="kunstbøger" content="kunstbøger">
+    <meta name="kunstværker" content="kunstværker">
+    <meta name="kunstbiblioteket" content="kunstbiblioteket">
+    <title>Travel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/dtw1azo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="desktop">
+
+        <div id="logo" onclick="window.location.href='index.html'">
+
+            <img src="img/logo.png" alt="logo">
+        </div>
+
+        <nav>
+
+            <ul style="list-style-type:none" id="menu" class="hidden">
+                <a href="index.html"></a>
+                <li><a href="produkter.html">Værker</a></li>
+                <li><a href="books.html">Bøger</a></li>
+                <li><a href="om.html">Om</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <header class="mobile">
+        <div id="logo" onclick="window.location.href='index.html'"></div>
+
+        <nav>
+            <div id="burger_menu">☰</div>
+            <div class="menu_wrapper">
+                <div class="mylinks">
+                    <ul style="list-style-type: none">
+                        <li><a href="index.html">Forside</a></li>
+                        <li> <a href="produkter.html">Værker</a> </li>
+                        <li><a href="books.html">Bøger</a></li>
+                        <li><a href="om.html">Om</a></li>
+                        <li> <a href="kontakt.html">Kontakt</a></li>
+
+
+
+                    </ul>
+
+
+
+
+
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="knap_tilbage">
+        <button id="go-back" onclick="window.location.href='produkter.html'"><img src="img/knap_x.png" alt="knap"></button>
+    </div>
+
+    <div class="wrapper_produkt">
+        <main id="container_produkt">
+            <div class="col_img"> <img class="billede" src=""></div>
+            <div class="col_info">
+                <h1 class="overskrift"></h1>
+
+                <h1 class="titel_produkt"></h1>
+                <h2 class=" pris"></h2>
+                <h3 class="materiale"></h3>
+                <h3 class="size">
+                </h3>
+
+                <button>
+                    <a href="mailto:byskov@grundtvigs.dk">
+                        <p>Kontakt Kræsten</p>
+                    </a>
+                </button>
+
+
+            </div>
+            <div class="col_tekst">
+                <h3>Beskrivelse af værket</h3>
+                <p class="beskrivelse"></p>
+
+
+                <p class="artist_para">Kunstnerens tanker bag værket</p>
+                <audio preload="auto" play="play" controls>
+                    <source src="mp3/travel_mixdown.mp3" type="audio/mp3">
+                </audio>
+            </div>
+
+
+
+        </main>
+
+    </div>
+
+
+
+
+
+
+    <footer>
+        <div class="wrapper">
+            <div class="left">
+                <h2>Kontakt</h2>
+                <a href="https://www.google.com/maps/place/Falkenh%C3%B8jvej+7,+3460+Birker%C3%B8d/@55.8506692,12.3827755,17z/data=!3m1!4b1!4m5!3m4!1s0x46524677a0491549:0x28d2c5dcfd92350!8m2!3d55.8506692!4d12.3849642" target="_blank">Falkenhøjvej 7 <br> 3460 Birkerød</a>
+                <p>+45 20 82 24 58</p>
+
+                <a href="mailto: byskov@grundtvigs.dk">byskov@grundtvigs.dk</a>
+            </div>
+
+            <div class="right">
+                <h3>Find mig også på Kunstbiblioteket</h3><a href="https://kunstbiblioteket.dk/?s=Kr%C3%A6sten+Krum+Byskov&post_type=product">Kunstbiblioteket Nikolajgade 22</a>
+
+                <div class="some">
+                    <div class="face"> <a href="https://www.facebook.com/By-Byskov-296229904195893/" target="_blank"><img src="img/face.png" alt=""></a></div>
+                    <div class="insta"><a href="https://www.instagram.com/by_byskov/?hl=da" target="_blank"><img src="img/insta.png" alt=""></a></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+
+
+
+
+
+    <script src="menu.js"></script>
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get('http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter');
+        let pages;
+        document.addEventListener("DOMContentLoaded", start)
+
+
+
+
+
+        async function start() {
+            let jsonData = await fetch(`http://slodberg.dk/kea/2sm/10-eksamen/wordpress/wp-json/wp/v2/produkter/202`);
+            pages = await jsonData.json();
+            visPages();
+            visTilbage();
+
+            toggleMenu();
+
+
+
+        }
+
+
+        function visPages() {
+
+
+            //            document.querySelector(".overskrift").textContent = pages.overskrift;
+            document.querySelector(".titel_produkt").textContent = pages.titel;
+            document.querySelector(".beskrivelse").textContent = pages.beskrivelse;
+            document.querySelector(".materiale").textContent = 'Matrialer: ' + pages.materiale;
+            document.querySelector(".size").textContent = 'Størrelse: ' + pages.size;
+
+            document.querySelector(".pris").textContent = pages.pris + ',-';
+
+
+            document.querySelector(".billede").src = pages.billede.guid;
+
+
+            document.querySelector(".lydfil").src = pages.content.rendered;
+
+        }
+    </script>
+
+</body></html>
